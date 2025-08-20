@@ -1,0 +1,265 @@
+delegation	code_deleg
+Carthage	11 51
+La Medina	11 52
+Bab El Bhar	11 53
+Bab Souika	11 54
+El Omrane	11 55
+El Omrane Supérieur	11 56
+Ettahrir	11 57
+El Menzah	11 58
+Cité El Khadhra	11 59
+Le Bardo	11 60
+Sijoumi	11 61
+Ezzouhour	11 62
+El Hrairia	11 63
+Sidi Hassine	11 64
+El Ouardia	11 65
+El Kabaria	11 66
+Sidi El Béchir	11 67
+Djebel Djelloud	11 68
+La Goulette	11 69
+Le Kram	11 70
+La Marsa	11 71
+L’Ariana Ville	12 51
+Soukra	12 52
+Raoued	12 53
+Kalaât El Andalous	12 54
+Sidi Thabet	12 55
+Cité Ettadhamen	12 56
+El Mnihla	12 57
+Ben Arous	13 51
+La Nouvelle Medina	13 52
+El Mourouj	13 53
+Hammam Lif	13 54
+Hammam Chôtt	13 55
+Bou Mhel El Bassatine	13 56
+Ezzahra	13 57
+Radès	13 58
+Megrine	13 59
+Mohamedia	13 60
+Fouchana	13 61
+Mornag	13 62
+Mannouba	14 51
+Douar Hicher	14 52
+Oued Ellil	14 53
+Mornaguia	14 54
+Borj Amri	14 55
+Djedeida	14 56
+Tebourba	14 57
+El Battane	14 58
+Nabeul	15 51
+Dar Châabane El Fehri	15 52
+Beni khiar	15 53
+Korba	15 54
+Menzel Temime	15 55
+El Mida	15 56
+Kelibia	15 57
+Hammam El Guezaz	15 58
+El Haouaria	15 59
+Takelsa	15 60
+Soliman	15 61
+Menzel Bouzelfa	15 62
+Beni Khalled	15 63
+Grombalia	15 64
+Bou Argoub	15 65
+Hammamet	15 66
+Zaghouan	16 51
+Ez-Zeriba	16 52
+Bir Mchergua	16 53
+El Fahs	16 54
+En-Nadhour	16 55
+Saouaf	16 56
+Bizerte Nord	17 51
+Zarzouna	17 52
+Bizerte Sud	17 53
+Sedjnane	17 54
+Djoumine	17 55
+Mateur	17 56
+Ghezala	17 57
+Menzel Bourguiba	17 58
+Tinja	17 59
+Utique	17 60
+Ghar El Meleh	17 61
+Menzel Djemil	17 62
+El Alia	17 63
+Ras Djebel	17 64
+Béja Nord	21 51
+Béja Sud	21 52
+Amdoun	21 53
+Nefza	21 54
+Teboursouk	21 55
+Tibar	21 56
+Testour	21 57
+Goubellat	21 58
+Medjez El Bab	21 59
+Jendouba	22 51
+Jendouba Nord	22 52
+Bou Salem	22 53
+Tabarka	22 54
+Ain Draham	22 55
+Fernana	22 56
+Ghardimaou	22 57
+Oued Meliz	22 58
+Balta - Bou Aouane	22 59
+Kef Ouest	23 51
+Kef Est	23 52
+Nebeur	23 53
+Sakiet Sidi Youssef	23 54
+Tajerouine	23 55
+Kalâat Snan	23 56
+Kalâat Khasbah	23 57
+Djerissa	23 58
+El Ksour	23 59
+Dahmani	23 60
+Es-Sers	23 61
+Siliana Nord	24 51
+Siliana Sud	24 52
+Bou Arada	24 53
+Gaâfour	24 54
+El Krib	24 55
+Bourouis	24 56
+Makthar	24 57
+Er-Rouhia	24 58
+Kesra	24 59
+Bargou	24 60
+El Aroussa	24 61
+Sousse Medina	31 51
+Sousse Riadh	31 52
+Sousse Jawhara	31 53
+Sousse Sidi Abdelhamid	31 54
+Hammam Sousse	31 55
+Akouda	31 56
+Kalaâ Kebira	31 57
+Sidi Bou Ali	31 58
+Hergla	31 59
+Enfidha	31 60
+Bouficha	31 61
+Kondar	31 62
+Sidi El Héni	31 63
+M’saken	31 64
+Kalaâ Seghira	31 65
+Zaouia - Ksiba - Thrayet	31 66
+Monastir	32 51
+Ouerdanine	32 52
+Sahline	32 53
+Zermadine	32 54
+Beni Hassen	32 55
+Jammel	32 56
+Bembla	32 57
+Moknine	32 58
+Bekalta	32 59
+Teboulba	32 60
+Ksar Helal	32 61
+Ksibet El Mediouni	32 62
+Sayada-Lamta Bou-Hjar	32 63
+Mahdia	33 51
+Bou Merdès	33 52
+Ouled Chamekh	33 53
+Chorbane	33 54
+Hebira	33 55
+Essouassi	33 56
+El Djem	33 57
+Chebba	33 58
+Melloulech	33 59
+Sidi Alouane	33 60
+Ksour Essef	33 61
+Sfax Ville	34 51
+Sfax Ouest	34 52
+Sakiet Ezzit	34 53
+Sakiet Eddaïer	34 54
+Sfax Sud	34 55
+Tina	34 56
+Agareb	34 57
+Djebeniana	34 58
+El Amra	34 59
+El Hencha	34 60
+Menzel Chaker	34 61
+Ghraiba	34 62
+Bir ali Ben Kelifa	34 63
+Skhira	34 64
+Mahres	34 65
+Kerkenah	34 66
+Kairouan Nord	41 51
+Kairouan Sud	41 52
+Echebika	41 53
+Sbikha	41 54
+EL Ouslatia	41 55
+Haffouz	41 56
+El Alâa	41 57
+Hajeb el Ayoun	41 58
+Nasrallah	4159
+Echrarda	41 60
+Bouhajla	41 61
+Kasserine Nord	42 51
+Kasserine Sud	42 52
+Ezzouhour	42 53
+Hassi Ferid	42 54
+Sbeitla	42 55
+Sbiba	42 56
+Djedeliane	42 57
+El Ayoun	42 58
+Thala	42 59
+Hidra	42 60
+Foussana	42 61
+Feriana	42 62
+Majel Bel Abbès	42 63
+Sidi Bouzid Ouest	43 51
+Sidi Bouzid Est	43 52
+Jilma	43 53
+Cebalet Ouled Asker	43 54
+Bir El Hafey	43 55
+Sidi Ali Ben Aoûn	43 56
+Menzel Bouzaïenne	43 57
+Meknassy	43 58
+Souk Jedid	43 59
+Mezzouna	43 60
+Regueb	43 61
+Ouled Haffouz	43 62
+Gabes Medina	51 51
+Gabes Ouest	51 52
+Gabes Sud	51 53
+Ghanouch	51 54
+El Metouia	51 55
+Menzel El Habib	51 56
+El Hamma	51 57
+Matmata	51 58
+Nouvelle Matmata	51 59
+Mareth	51 60
+Medenine Nord	52 51
+Medenine Sud	52 52
+Beni Khedech	52 53
+Ben Guerdane	52 54
+Zarzis	52 55
+Djerba Houmet Souk	52 56
+Djerba Midoun	52 57
+Djerba Ajim	52 58
+Sidi Makhloulf	52 59
+Tataouine Nord	53 51
+Tataouine Sud	53 52
+Smâr	53 53
+Bir Lahmar	53 54
+Ghomrassen	53 55
+Dhehiba	53 56
+Remada	53 57
+Gafsa Nord	61 51
+Sidi Aïch	61 52
+El Ksar	61 53
+Gafsa Sud	61 54
+Oum El Araies	61 55
+Redeyef	61 56
+Metlaoui	61 57
+Mdhila	61 58
+EL Guetar	61 59
+Belkhir	61 60
+Sned	61 61
+Tozeur	62 51
+Degach	62 52
+Tameghza	62 53
+Nefta	62 54
+Hazoua	62 55
+Kebili Sud	63 51
+Kebeli Nord	63 52
+Souk El Ahed	63 53
+Douz Nord	63 54
+Douz Sud	63 55
+Faouar	63 56
