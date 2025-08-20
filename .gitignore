@@ -1,3 +1,7 @@
+# Data folders - Contains sensitive and large datasets
+data/
+*/Data/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -16,39 +20,70 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual Environment
+# Virtual environments
 venv/
 env/
 ENV/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Jupyter Notebook
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# Excel temporary files
-~$*.xlsx
-~$*.xls
-
-# Local environment variables
+.venv
 .env
 
-# Operating System
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # Logs
 *.log
+logs/
 
-# Database
-*.db
-*.sqlite3
+# Cache
+.cache/
+*.cache
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Excel temporary files
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+
+# Jupyter Notebook
+.ipynb_checkpointsc:\Users\Semah Kadri\OneDrive - Value Digital Services\Bureau\géomarketing\data
+
+# Large data files
+*.csv
+*.xlsx
+*.xls
+*.pdf
+*.json
+*.geojson
+*.zip
+*.rar
+*.tar.gz
+
+# Exceptions - Keep small config files if needed
+!config.json
+!package.json
+!requirements.txt

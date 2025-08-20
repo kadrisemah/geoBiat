@@ -54,6 +54,7 @@ prospection_page = html.Div(
                                     dcc.Link(dbc.NavLink("Logement et Patrimoine",active=False),href="/log_patrimoine",refresh=True),
                                     dcc.Link(dbc.NavLink("Assurance",active=False),href="/assurance",refresh=True),
                                     dcc.Link(dbc.NavLink("Dépenses",active=False),href="/depense",refresh=True),
+                                    dcc.Link(dbc.NavLink("Professionnels Médicaux",active=False),href="/medical_professionals",refresh=True),
 
                                 ],
                                 vertical=True,

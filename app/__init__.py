@@ -37,6 +37,9 @@ def register_dashapp(app):
     from app.depenses.layout import depense_page
     from app.depenses.callbacks import register_callbacks_depenses
 
+    from app.medical_professionals.layout import medical_professionals_page
+    from app.medical_professionals.callbacks import register_callbacks_medical_professionals
+
 
     # Meta tags for viewport responsivebess
 
@@ -143,6 +146,20 @@ def register_dashapp(app):
         depense.layout = depense_page
         depense._favicon = 'biat.jpg'
         register_callbacks_depenses(depense)
+
+    medical_professionals = dash.Dash(__name__,
+                    server=app,
+                    url_base_pathname='/medical_professionals/',
+                    assets_folder=get_root_path(__name__)+ '/assets/',
+                    meta_tags=[meta_viewport],
+                    external_stylesheets=[dbc.themes.BOOTSTRAP, FONT_AWESOME])
+                       
+    with app.app_context():
+
+        medical_professionals.title = 'Professionnels Médicaux'
+        medical_professionals.layout = medical_professionals_page
+        medical_professionals._favicon = 'biat.jpg'
+        register_callbacks_medical_professionals(medical_professionals)
 
 
     # __protect_dashviews(dashapp)
