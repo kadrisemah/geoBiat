@@ -40,6 +40,12 @@ def register_dashapp(app):
     from app.medical_professionals.layout import medical_professionals_page
     from app.medical_professionals.callbacks import register_callbacks_medical_professionals
 
+    from app.experts_comptables.layout import experts_comptables_page
+    from app.experts_comptables.callbacks import register_callbacks_experts_comptables
+
+    from app.pharmacies.layout import pharmacies_page
+    from app.pharmacies.callbacks import register_callbacks_pharmacies
+
 
     # Meta tags for viewport responsivebess
 
@@ -160,6 +166,34 @@ def register_dashapp(app):
         medical_professionals.layout = medical_professionals_page
         medical_professionals._favicon = 'biat.jpg'
         register_callbacks_medical_professionals(medical_professionals)
+
+    experts_comptables = dash.Dash(__name__,
+                    server=app,
+                    url_base_pathname='/experts_comptables/',
+                    assets_folder=get_root_path(__name__)+ '/assets/',
+                    meta_tags=[meta_viewport],
+                    external_stylesheets=[dbc.themes.BOOTSTRAP, FONT_AWESOME])
+                       
+    with app.app_context():
+
+        experts_comptables.title = 'Experts Comptables'
+        experts_comptables.layout = experts_comptables_page
+        experts_comptables._favicon = 'biat.jpg'
+        register_callbacks_experts_comptables(experts_comptables)
+
+    pharmacies = dash.Dash(__name__,
+                    server=app,
+                    url_base_pathname='/pharmacies/',
+                    assets_folder=get_root_path(__name__)+ '/assets/',
+                    meta_tags=[meta_viewport],
+                    external_stylesheets=[dbc.themes.BOOTSTRAP, FONT_AWESOME])
+                       
+    with app.app_context():
+
+        pharmacies.title = 'Pharmacies'
+        pharmacies.layout = pharmacies_page
+        pharmacies._favicon = 'biat.jpg'
+        register_callbacks_pharmacies(pharmacies)
 
 
     # __protect_dashviews(dashapp)

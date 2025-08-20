@@ -1,19 +1,23 @@
-
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 import warnings
 warnings.filterwarnings("ignore")
-import time
-# Import the necessaries libraries
 import pandas as pd 
 import geopandas as gpd 
 
-
+# Load experts comptables data
+df_experts = pd.read_csv(r'app\experts_comptables\Data\experts_comptables_geocoded.csv')
 df_banks = pd.read_csv(r'app\base_prospection\Data\geo_banks.csv')
 gdf_all_banks = gpd.GeoDataFrame(df_banks, geometry=gpd.points_from_xy(df_banks.long, df_banks.lat))
 
+# Load geographic boundaries (same as accueil)
+gdf_delegation = gpd.read_file(r'app\accueil\Data\gdf_delegation.geojson')
 
-accueil_page = html.Div(
+# Get unique specialties and governorates
+unique_specialties = sorted(df_experts['specialite'].dropna().unique())
+unique_gouvernorats = sorted(df_experts['gouvernorat'].dropna().unique())
+
+experts_comptables_page = html.Div(
     children=[
         html.Div(
             className="row",
@@ -35,7 +39,7 @@ accueil_page = html.Div(
 
                             dbc.Nav(
                                 [
-                                    dcc.Link(dbc.NavLink("Accueil",active=True),href="/",refresh=True),
+                                    dcc.Link(dbc.NavLink("Accueil",active=False),href="/",refresh=True),
                                     dcc.Link(dbc.NavLink("Base de Prospection",active=False),href="/prospection",refresh=True),
                                     dcc.Link(dbc.NavLink("Socio-Démographie",active=False),href="/socio_démographie",refresh=True),
                                     dcc.Link(dbc.NavLink("Equipements Financiers",active=False),href="/equip_financ",refresh=True),
@@ -43,9 +47,8 @@ accueil_page = html.Div(
                                     dcc.Link(dbc.NavLink("Assurance",active=False),href="/assurance",refresh=True),
                                     dcc.Link(dbc.NavLink("Dépenses",active=False),href="/depense",refresh=True),
                                     dcc.Link(dbc.NavLink("Professionnels Médicaux",active=False),href="/medical_professionals",refresh=True),
-                                    dcc.Link(dbc.NavLink("Experts Comptables",active=False),href="/experts_comptables",refresh=True),
+                                    dcc.Link(dbc.NavLink("Experts Comptables",active=True),href="/experts_comptables",refresh=True),
                                     dcc.Link(dbc.NavLink("Pharmacies",active=False),href="/pharmacies",refresh=True),
-
 
                                 ],
                                 vertical=True,
@@ -53,9 +56,55 @@ accueil_page = html.Div(
                                 style={"margin-top":"6rem"}
                             ),
 
+                        # Filters section
+                        html.Div([
+                            html.H4("Filtres", style={"margin-top": "2rem", "color": "#2c3e50"}),
+                            
+                            html.Div([
+                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                dcc.Dropdown(
+                                    id="filter_gouvernorat_experts",
+                                    options=[{"label": gov, "value": gov} for gov in unique_gouvernorats],
+                                    multi=True,
+                                    placeholder="Sélectionner gouvernorat(s)",
+                                    style={"margin-bottom": "1rem"}
+                                )
+                            ]),
+                            
+                            html.Div([
+                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                dcc.Checklist(
+                                    id="map_layers_experts",
+                                    options=[
+                                        {"label": "Experts Comptables", "value": "experts"},
+                                        {"label": "Agences BIAT", "value": "biat"},
+                                        {"label": "Banques Concurrentes", "value": "competitors"}
+                                    ],
+                                    value=["experts", "biat"],
+                                    style={"margin-bottom": "1rem"}
+                                )
+                            ]),
+                            
+                            html.Div([
+                                html.Label("Conseils Régionaux à Afficher:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Div([
+                                    dbc.Button("Tout Sélectionner", id="select_all_conseils", color="primary", size="sm", 
+                                              style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
+                                    dbc.Button("Tout Désélectionner", id="deselect_all_conseils", color="secondary", size="sm",
+                                              style={"margin-bottom": "0.5rem"})
+                                ]),
+                                dcc.Checklist(
+                                    id="conseil_selection",
+                                    options=[],  # Will be populated dynamically
+                                    value=[],    # Will be populated dynamically
+                                    style={"max-height": "300px", "overflow-y": "scroll", "border": "1px solid #ddd", 
+                                          "padding": "0.5rem", "border-radius": "4px", "font-size": "0.85rem"}
+                                )
+                            ], style={"margin-bottom": "1rem"})
+                        ], style={"padding": "1rem", "background-color": "#f8f9fa", "border-radius": "8px"})
+
                     ],
                 ),
-
 
                 # Column for app graphs and plots
                 html.Div(
@@ -65,7 +114,7 @@ accueil_page = html.Div(
                             dbc.Col(
                                 html.Div(
                                     children=[
-                                        dcc.Dropdown(id="slct_city",
+                                        dcc.Dropdown(id="slct_city_experts",
                                                     options=[{"label": i, "value": i} for i in gdf_all_banks['gouvernorat'].unique()],
                                                     multi=True,
                                                     placeholder="Sélectionnez un ou plusieurs Gouvernorat")
@@ -75,7 +124,7 @@ accueil_page = html.Div(
                             dbc.Col(
                                 html.Div(
                                     children=[
-                                        dcc.Dropdown(id="slct_delegat", 
+                                        dcc.Dropdown(id="slct_delegat_experts", 
                                                     multi=True,
                                                     placeholder="Sélectionnez une ou plusieurs Délégation",                                                    
                                                 )
@@ -90,7 +139,7 @@ accueil_page = html.Div(
 
 
         
-                        dcc.Graph(id="my_bee_map",style={"height": "93rem",
+                        dcc.Graph(id="experts_bee_map",style={"height": "93rem",
                                                         "margin-bottom": "1rem",
                                                         "margin-left": "1rem","margin-right": "1rem","margin-top":"1rem"}),
                         

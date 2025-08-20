@@ -47,6 +47,8 @@ medical_professionals_page = html.Div(
                                     dcc.Link(dbc.NavLink("Assurance",active=False),href="/assurance",refresh=True),
                                     dcc.Link(dbc.NavLink("Dépenses",active=False),href="/depense",refresh=True),
                                     dcc.Link(dbc.NavLink("Professionnels Médicaux",active=True),href="/medical_professionals",refresh=True),
+                                    dcc.Link(dbc.NavLink("Experts Comptables",active=False),href="/experts_comptables",refresh=True),
+                                    dcc.Link(dbc.NavLink("Pharmacies",active=False),href="/pharmacies",refresh=True),
 
                                 ],
                                 vertical=True,

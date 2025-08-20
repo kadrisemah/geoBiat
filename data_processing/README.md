@@ -42,13 +42,82 @@ This folder contains scripts for processing and fixing data issues in the GéoBi
 
 ## Usage Notes
 
+### Medical Professionals
 - Run `fix_doctors_locations.py` whenever new doctor data is added
 - Use `verify_locations.py` to check data quality after processing
 - Scripts handle Tunisia-specific geographic challenges (Arabic names, regional variations)
 - Maintains original data structure while improving accuracy
 
+### Experts Comptables
+- Run `process_experts_comptables_simple.py` to convert JSON data to CSV format
+- Run `add_precise_coordinates_experts.py` to add high-precision geocoding
+- Use `test_experts_data.py` to validate data structure and loading
+- Use `show_experts_locations.py` for geographic distribution analysis
+- Use `check_coordinate_accuracy.py` to assess coordinate precision for distance calculations
+
 ## Future Enhancements
 
-- Add processing scripts for other data types (banks, demographics, etc.)
-- Implement batch processing for multiple CSV files
-- Add data validation for new datasets
+- Add processing scripts for pharmacies and conseillers JSON data
+- Implement PDF processing for architects data
+- Add batch processing for multiple profession files
+- Improve geocoding precision for governorate-level coordinates
+- Add distance calculation utilities between professions and BIAT branches
+
+### 3. `process_experts_comptables_simple.py`
+- **Purpose**: Initial processing of experts comptables JSON data
+- **Function**: Converts JSON to CSV format with basic data cleaning
+- **Usage**: `python3 process_experts_comptables_simple.py`
+- **Input**: `data/data_geo/professionsLibéreales/claasic/experts_comptables_oect.json`
+- **Output**: `app/experts_comptables/Data/experts_comptables_processed.csv`
+- **Features**:
+  - Address cleaning and standardization
+  - Governorate extraction from addresses
+  - Profession categorization
+
+### 4. `add_precise_coordinates_experts.py`
+- **Purpose**: High-precision geocoding for experts comptables
+- **Function**: Applies same precision standards as medical professionals
+- **Usage**: `python3 add_precise_coordinates_experts.py`
+- **Input**: `app/experts_comptables/Data/experts_comptables_processed.csv`
+- **Output**: `app/experts_comptables/Data/experts_comptables_geocoded.csv`
+- **Results**: 90.7% geocoding success rate (333/367 experts)
+- **Features**:
+  - Pattern-based address matching with ~50m precision
+  - Governorate-level fallback with ~1-2km precision
+  - Zone de Chalendise identification
+  - Confidence scoring system
+
+### 5. `test_experts_data.py`
+- **Purpose**: Data validation for experts comptables processing
+- **Function**: Tests data loading and structure validation
+- **Usage**: `python3 test_experts_data.py`
+- **Output**: Data structure analysis and validation report
+
+### 6. `show_experts_locations.py`
+- **Purpose**: Geographic analysis of experts comptables distribution
+- **Function**: Shows location patterns by conseil régional
+- **Usage**: `python3 show_experts_locations.py`
+- **Output**: Detailed breakdown of expert locations by council and governorate
+
+### 7. `check_coordinate_accuracy.py`
+- **Purpose**: Coordinate precision analysis for distance calculations
+- **Function**: Evaluates geocoding accuracy and suitability for business intelligence
+- **Usage**: `python3 check_coordinate_accuracy.py`
+- **Output**: Precision assessment and recommendations for distance calculations
+
+## Results Achieved
+
+### Experts Comptables Processing
+- **Total records**: 367 experts comptables
+- **Geocoding success**: 90.7% (333/367 experts with coordinates)
+- **High precision**: 35.4% (118 experts with street-level accuracy ~50m)
+- **Medium precision**: 64.6% (215 experts with district-level accuracy ~1-2km)
+- **Zone coverage**: 2 experts in zone de Chalendise
+- **Conseil régional distribution**:
+  - Tunis Ben Arous: 234 experts (63.7%)
+  - Nord: 48 experts (13.1%)
+  - Sud: 40 experts (10.9%)
+  - ******* (unspecified): 32 experts (8.7%)
+  - Centre: 13 experts (3.5%)
+
+### Location Accuracy Improvements
