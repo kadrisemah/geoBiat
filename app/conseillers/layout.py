@@ -47,19 +47,19 @@ conseillers_page = html.Div(
                             
                             # Gouvernorat Filter
                             html.Div([
-                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
+                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem", "color": "#000"}),
                                 dcc.Dropdown(
                                     id="filter_gouvernorat_conseillers",
                                     options=[{"label": gov, "value": gov} for gov in unique_gouvernorats],
                                     multi=True,
                                     placeholder="Sélectionner gouvernorat(s)",
-                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem", "color": "#000"}
                                 )
                             ]),
                             
                             # Map Layers Filter  
                             html.Div([
-                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
+                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem", "color": "#000"}),
                                 dcc.Checklist(
                                     id="map_layers_conseillers",
                                     options=[
@@ -68,15 +68,15 @@ conseillers_page = html.Div(
                                         {"label": "Banques Concurrentes", "value": "competitors"}
                                     ],
                                     value=["conseillers", "biat"],
-                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem", "color": "#000"}
                                 )
                             ]),
                             
                             # Distance-based Precision Filter
                             html.Div([
-                                html.Label("Zone de Proximité BIAT:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
+                                html.Label("Zone de Proximité BIAT:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem", "color": "#000"}),
                                 html.P("Basé sur la distance réelle à l'agence BIAT la plus proche", 
-                                      style={"font-size": "0.75rem", "color": "#666", "margin-bottom": "0.4rem", "line-height": "1.2"}),
+                                      style={"font-size": "0.75rem", "color": "#000", "margin-bottom": "0.4rem", "line-height": "1.2"}),
                                 
                                 # Quick filter buttons - more compact
                                 html.Div([
@@ -98,7 +98,7 @@ conseillers_page = html.Div(
                                     ],
                                     value=["high", "medium", "low"],
                                     style={"border": "1px solid #ddd", "padding": "0.4rem", "border-radius": "4px", 
-                                          "font-size": "0.8rem", "background-color": "#fff"}
+                                          "font-size": "0.8rem", "background-color": "#fff", "color": "#000"}
                                 )
                             ], style={"margin-bottom": "0.8rem"})
                             

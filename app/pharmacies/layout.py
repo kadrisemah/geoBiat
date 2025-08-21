@@ -47,19 +47,19 @@ pharmacies_page = html.Div(
                             
                             # Gouvernorat Filter
                             html.Div([
-                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
+                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem", "color": "#000"}),
                                 dcc.Dropdown(
                                     id="filter_gouvernorat_pharmacies",
                                     options=[{"label": gov, "value": gov} for gov in unique_gouvernorats],
                                     multi=True,
                                     placeholder="Sélectionner gouvernorat(s)",
-                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem", "color": "#000"}
                                 )
                             ]),
                             
                             # Map Layers Filter
                             html.Div([
-                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
+                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem", "color": "#000"}),
                                 dcc.Checklist(
                                     id="map_layers_pharmacies",
                                     options=[
@@ -68,13 +68,13 @@ pharmacies_page = html.Div(
                                         {"label": "Banques Concurrentes", "value": "competitors"}
                                     ],
                                     value=["pharmacies", "biat"],
-                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem", "color": "#000"}
                                 )
                             ]),
                             
                             # Service Type Filter (ORIGINAL - kept but compacted)
                             html.Div([
-                                html.Label("Type de Service:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
+                                html.Label("Type de Service:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem", "color": "#000"}),
                                 html.Div([
                                     dbc.Button("Tous Services", id="select_all_services", color="primary", size="sm", 
                                               style={"margin-right": "0.3rem", "margin-bottom": "0.4rem", "font-size": "0.75rem", "padding": "0.2rem 0.5rem"}),
@@ -86,7 +86,7 @@ pharmacies_page = html.Div(
                                     options=[],  # Will be populated dynamically
                                     value=[],    # Will be populated dynamically
                                     style={"max-height": "200px", "overflow-y": "scroll", "border": "1px solid #ddd", 
-                                          "padding": "0.4rem", "border-radius": "4px", "font-size": "0.8rem", "background-color": "#fff"}
+                                          "padding": "0.4rem", "border-radius": "4px", "font-size": "0.8rem", "background-color": "#fff", "color": "#000"}
                                 )
                             ], style={"margin-bottom": "0.8rem"})
                             
