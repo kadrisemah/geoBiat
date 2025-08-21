@@ -70,21 +70,23 @@ conseillers_page = html.Div(
                             ]),
                             
                             html.Div([
-                                html.Label("Précision des Coordonnées:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Zone de Proximité BIAT:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.P("Basé sur la distance réelle à l'agence BIAT la plus proche", 
+                                      style={"font-size": "0.85rem", "color": "#666", "margin-bottom": "0.5rem"}),
                                 html.Div([
-                                    dbc.Button("Haute Précision", id="high_precision_conseillers", color="success", size="sm", 
+                                    dbc.Button("Zone Stratégique", id="high_precision_conseillers", color="success", size="sm", 
                                               style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
-                                    dbc.Button("Précision Moyenne", id="medium_precision_conseillers", color="warning", size="sm",
+                                    dbc.Button("Zone d'Expansion", id="medium_precision_conseillers", color="warning", size="sm",
                                               style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
-                                    dbc.Button("Toutes Précisions", id="all_precision_conseillers", color="info", size="sm",
+                                    dbc.Button("Toutes Zones", id="all_precision_conseillers", color="info", size="sm",
                                               style={"margin-bottom": "0.5rem"})
                                 ]),
                                 dcc.Checklist(
                                     id="precision_selection_conseillers",
                                     options=[
-                                        {"label": "Haute Précision (±30m)", "value": "high"},
-                                        {"label": "Précision Moyenne (±1km)", "value": "medium"},
-                                        {"label": "Précision Faible", "value": "low"}
+                                        {"label": "Zone Stratégique (≤2km de BIAT)", "value": "high"},
+                                        {"label": "Zone d'Expansion (2-6km de BIAT)", "value": "medium"},
+                                        {"label": "Zone Éloignée (>6km de BIAT)", "value": "low"}
                                     ],
                                     value=["high", "medium", "low"],
                                     style={"max-height": "200px", "overflow-y": "scroll", "border": "1px solid #ddd", 
