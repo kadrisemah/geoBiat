@@ -26,6 +26,7 @@ pharmacies_page = html.Div(
                 # Column for user controls
                 html.Div(
                     className="four columns div-user-controls",
+                    style={"height": "100vh", "overflow-y": "auto", "padding-right": "10px"},
                     children=[
                         dbc.Row([
                             dbc.Col(                        
@@ -40,23 +41,25 @@ pharmacies_page = html.Div(
 
                             create_navigation(active_page='pharmacies'),
 
-                        # Filters section
+                        # Filters section - Optimized layout (keeping original functionality)
                         html.Div([
-                            html.H4("Filtres", style={"margin-top": "2rem", "color": "#2c3e50"}),
+                            html.H4("Filtres", style={"margin-top": "1rem", "margin-bottom": "1rem", "color": "#2c3e50"}),
                             
+                            # Gouvernorat Filter
                             html.Div([
-                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
                                 dcc.Dropdown(
                                     id="filter_gouvernorat_pharmacies",
                                     options=[{"label": gov, "value": gov} for gov in unique_gouvernorats],
                                     multi=True,
                                     placeholder="Sélectionner gouvernorat(s)",
-                                    style={"margin-bottom": "1rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
                                 )
                             ]),
                             
+                            # Map Layers Filter
                             html.Div([
-                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
                                 dcc.Checklist(
                                     id="map_layers_pharmacies",
                                     options=[
@@ -65,27 +68,29 @@ pharmacies_page = html.Div(
                                         {"label": "Banques Concurrentes", "value": "competitors"}
                                     ],
                                     value=["pharmacies", "biat"],
-                                    style={"margin-bottom": "1rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
                                 )
                             ]),
                             
+                            # Service Type Filter (ORIGINAL - kept but compacted)
                             html.Div([
-                                html.Label("Type de Service:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Type de Service:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
                                 html.Div([
-                                    dbc.Button("Tout Sélectionner", id="select_all_services", color="primary", size="sm", 
-                                              style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
-                                    dbc.Button("Tout Désélectionner", id="deselect_all_services", color="secondary", size="sm",
-                                              style={"margin-bottom": "0.5rem"})
+                                    dbc.Button("Tous Services", id="select_all_services", color="primary", size="sm", 
+                                              style={"margin-right": "0.3rem", "margin-bottom": "0.4rem", "font-size": "0.75rem", "padding": "0.2rem 0.5rem"}),
+                                    dbc.Button("Aucun", id="deselect_all_services", color="secondary", size="sm",
+                                              style={"margin-bottom": "0.4rem", "font-size": "0.75rem", "padding": "0.2rem 0.5rem"})
                                 ]),
                                 dcc.Checklist(
                                     id="service_selection",
                                     options=[],  # Will be populated dynamically
                                     value=[],    # Will be populated dynamically
-                                    style={"max-height": "300px", "overflow-y": "scroll", "border": "1px solid #ddd", 
-                                          "padding": "0.5rem", "border-radius": "4px", "font-size": "0.85rem"}
+                                    style={"max-height": "200px", "overflow-y": "scroll", "border": "1px solid #ddd", 
+                                          "padding": "0.4rem", "border-radius": "4px", "font-size": "0.8rem", "background-color": "#fff"}
                                 )
-                            ], style={"margin-bottom": "1rem"})
-                        ], style={"padding": "1rem", "background-color": "#f8f9fa", "border-radius": "8px"})
+                            ], style={"margin-bottom": "0.8rem"})
+                            
+                        ], style={"padding": "0.8rem", "background-color": "#f8f9fa", "border-radius": "8px", "margin-bottom": "1rem"})
 
                     ],
                 ),

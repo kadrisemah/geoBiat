@@ -26,6 +26,7 @@ conseillers_page = html.Div(
                 # Column for user controls
                 html.Div(
                     className="four columns div-user-controls",
+                    style={"height": "100vh", "overflow-y": "auto", "padding-right": "10px"},
                     children=[
                         dbc.Row([
                             dbc.Col(                        
@@ -40,23 +41,25 @@ conseillers_page = html.Div(
 
                             create_navigation(active_page='conseillers'),
 
-                        # Filters section
+                        # Filters section - Optimized for scrolling
                         html.Div([
-                            html.H4("Filtres", style={"margin-top": "2rem", "color": "#2c3e50"}),
+                            html.H4("Filtres", style={"margin-top": "1rem", "margin-bottom": "1rem", "color": "#2c3e50"}),
                             
+                            # Gouvernorat Filter
                             html.Div([
-                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
                                 dcc.Dropdown(
                                     id="filter_gouvernorat_conseillers",
                                     options=[{"label": gov, "value": gov} for gov in unique_gouvernorats],
                                     multi=True,
                                     placeholder="Sélectionner gouvernorat(s)",
-                                    style={"margin-bottom": "1rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
                                 )
                             ]),
                             
+                            # Map Layers Filter  
                             html.Div([
-                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
                                 dcc.Checklist(
                                     id="map_layers_conseillers",
                                     options=[
@@ -65,35 +68,41 @@ conseillers_page = html.Div(
                                         {"label": "Banques Concurrentes", "value": "competitors"}
                                     ],
                                     value=["conseillers", "biat"],
-                                    style={"margin-bottom": "1rem"}
+                                    style={"margin-bottom": "0.8rem", "font-size": "0.85rem"}
                                 )
                             ]),
                             
+                            # Distance-based Precision Filter
                             html.Div([
-                                html.Label("Zone de Proximité BIAT:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Zone de Proximité BIAT:", style={"font-weight": "bold", "margin-bottom": "0.3rem", "font-size": "0.9rem"}),
                                 html.P("Basé sur la distance réelle à l'agence BIAT la plus proche", 
-                                      style={"font-size": "0.85rem", "color": "#666", "margin-bottom": "0.5rem"}),
+                                      style={"font-size": "0.75rem", "color": "#666", "margin-bottom": "0.4rem", "line-height": "1.2"}),
+                                
+                                # Quick filter buttons - more compact
                                 html.Div([
-                                    dbc.Button("Zone Stratégique", id="high_precision_conseillers", color="success", size="sm", 
-                                              style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
-                                    dbc.Button("Zone d'Expansion", id="medium_precision_conseillers", color="warning", size="sm",
-                                              style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
-                                    dbc.Button("Toutes Zones", id="all_precision_conseillers", color="info", size="sm",
-                                              style={"margin-bottom": "0.5rem"})
+                                    dbc.Button("Stratégique", id="high_precision_conseillers", color="success", size="sm", 
+                                              style={"margin-right": "0.3rem", "margin-bottom": "0.4rem", "font-size": "0.75rem", "padding": "0.2rem 0.5rem"}),
+                                    dbc.Button("Expansion", id="medium_precision_conseillers", color="warning", size="sm",
+                                              style={"margin-right": "0.3rem", "margin-bottom": "0.4rem", "font-size": "0.75rem", "padding": "0.2rem 0.5rem"}),
+                                    dbc.Button("Toutes", id="all_precision_conseillers", color="info", size="sm",
+                                              style={"margin-bottom": "0.4rem", "font-size": "0.75rem", "padding": "0.2rem 0.5rem"})
                                 ]),
+                                
+                                # Detailed checkboxes - more compact
                                 dcc.Checklist(
                                     id="precision_selection_conseillers",
                                     options=[
-                                        {"label": "Zone Stratégique (≤2km de BIAT)", "value": "high"},
-                                        {"label": "Zone d'Expansion (2-6km de BIAT)", "value": "medium"},
-                                        {"label": "Zone Éloignée (>6km de BIAT)", "value": "low"}
+                                        {"label": "Zone Stratégique (≤2km)", "value": "high"},
+                                        {"label": "Zone d'Expansion (2-6km)", "value": "medium"},
+                                        {"label": "Zone Éloignée (>6km)", "value": "low"}
                                     ],
                                     value=["high", "medium", "low"],
-                                    style={"max-height": "200px", "overflow-y": "scroll", "border": "1px solid #ddd", 
-                                          "padding": "0.5rem", "border-radius": "4px", "font-size": "0.85rem"}
+                                    style={"border": "1px solid #ddd", "padding": "0.4rem", "border-radius": "4px", 
+                                          "font-size": "0.8rem", "background-color": "#fff"}
                                 )
-                            ], style={"margin-bottom": "1rem"})
-                        ], style={"padding": "1rem", "background-color": "#f8f9fa", "border-radius": "8px"})
+                            ], style={"margin-bottom": "0.8rem"})
+                            
+                        ], style={"padding": "0.8rem", "background-color": "#f8f9fa", "border-radius": "8px", "margin-bottom": "1rem"})
 
                     ],
                 ),
