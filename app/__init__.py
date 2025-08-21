@@ -46,6 +46,9 @@ def register_dashapp(app):
     from app.pharmacies.layout import pharmacies_page
     from app.pharmacies.callbacks import register_callbacks_pharmacies
 
+    from app.conseillers.layout import conseillers_page
+    from app.conseillers.callbacks import register_callbacks_conseillers
+
 
     # Meta tags for viewport responsivebess
 
@@ -194,6 +197,20 @@ def register_dashapp(app):
         pharmacies.layout = pharmacies_page
         pharmacies._favicon = 'biat.jpg'
         register_callbacks_pharmacies(pharmacies)
+
+    conseillers = dash.Dash(__name__,
+                    server=app,
+                    url_base_pathname='/conseillers/',
+                    assets_folder=get_root_path(__name__)+ '/assets/',
+                    meta_tags=[meta_viewport],
+                    external_stylesheets=[dbc.themes.BOOTSTRAP, FONT_AWESOME])
+                       
+    with app.app_context():
+
+        conseillers.title = 'Conseillers'
+        conseillers.layout = conseillers_page
+        conseillers._favicon = 'biat.jpg'
+        register_callbacks_conseillers(conseillers)
 
 
     # __protect_dashviews(dashapp)

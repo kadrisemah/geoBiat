@@ -1,5 +1,6 @@
 from dash import dcc, html
 import dash_bootstrap_components as dbc
+from app.components.navigation import create_navigation
 import warnings
 warnings.filterwarnings("ignore")
 import pandas as pd 
@@ -37,24 +38,7 @@ experts_comptables_page = html.Div(
                             dbc.Col(
                             html.H2("BIAT - OUTIL DE GEOMARKETING ",style={"padding-top": "8px"}),width=9)]),
 
-                            dbc.Nav(
-                                [
-                                    dcc.Link(dbc.NavLink("Accueil",active=False),href="/",refresh=True),
-                                    dcc.Link(dbc.NavLink("Base de Prospection",active=False),href="/prospection",refresh=True),
-                                    dcc.Link(dbc.NavLink("Socio-Démographie",active=False),href="/socio_démographie",refresh=True),
-                                    dcc.Link(dbc.NavLink("Equipements Financiers",active=False),href="/equip_financ",refresh=True),
-                                    dcc.Link(dbc.NavLink("Logement et Patrimoine",active=False),href="/log_patrimoine",refresh=True),
-                                    dcc.Link(dbc.NavLink("Assurance",active=False),href="/assurance",refresh=True),
-                                    dcc.Link(dbc.NavLink("Dépenses",active=False),href="/depense",refresh=True),
-                                    dcc.Link(dbc.NavLink("Professionnels Médicaux",active=False),href="/medical_professionals",refresh=True),
-                                    dcc.Link(dbc.NavLink("Experts Comptables",active=True),href="/experts_comptables",refresh=True),
-                                    dcc.Link(dbc.NavLink("Pharmacies",active=False),href="/pharmacies",refresh=True),
-
-                                ],
-                                vertical=True,
-                                pills=True,
-                                style={"margin-top":"6rem"}
-                            ),
+                            create_navigation(active_page='experts_comptables'),
 
                         # Filters section
                         html.Div([

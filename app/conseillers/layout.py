@@ -6,19 +6,19 @@ warnings.filterwarnings("ignore")
 import pandas as pd 
 import geopandas as gpd 
 
-# Load pharmacies data
-df_pharmacies = pd.read_csv(r'app\pharmacies\Data\pharmacies_geocoded.csv')
+# Load conseillers data
+df_conseillers = pd.read_csv(r'app\conseillers\Data\conseillers_geocoded.csv')
 df_banks = pd.read_csv(r'app\base_prospection\Data\geo_banks.csv')
 gdf_all_banks = gpd.GeoDataFrame(df_banks, geometry=gpd.points_from_xy(df_banks.long, df_banks.lat))
 
 # Load geographic boundaries (same as accueil)
 gdf_delegation = gpd.read_file(r'app\accueil\Data\gdf_delegation.geojson')
 
-# Get unique specialties and governorates
-unique_specialties = sorted(df_pharmacies['specialite'].dropna().unique())
-unique_gouvernorats = sorted(df_pharmacies['gouvernorat'].dropna().unique())
+# Get unique categories and governorates
+unique_categories = sorted(df_conseillers['categorie'].dropna().unique())
+unique_gouvernorats = sorted(df_conseillers['gouvernorat'].dropna().unique())
 
-pharmacies_page = html.Div(
+conseillers_page = html.Div(
     children=[
         html.Div(
             className="row",
@@ -38,7 +38,7 @@ pharmacies_page = html.Div(
                             dbc.Col(
                             html.H2("BIAT - OUTIL DE GEOMARKETING ",style={"padding-top": "8px"}),width=9)]),
 
-                            create_navigation(active_page='pharmacies'),
+                            create_navigation(active_page='conseillers'),
 
                         # Filters section
                         html.Div([
@@ -47,7 +47,7 @@ pharmacies_page = html.Div(
                             html.Div([
                                 html.Label("Gouvernorat:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
                                 dcc.Dropdown(
-                                    id="filter_gouvernorat_pharmacies",
+                                    id="filter_gouvernorat_conseillers",
                                     options=[{"label": gov, "value": gov} for gov in unique_gouvernorats],
                                     multi=True,
                                     placeholder="Sélectionner gouvernorat(s)",
@@ -58,30 +58,36 @@ pharmacies_page = html.Div(
                             html.Div([
                                 html.Label("Affichage:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
                                 dcc.Checklist(
-                                    id="map_layers_pharmacies",
+                                    id="map_layers_conseillers",
                                     options=[
-                                        {"label": "Pharmacies", "value": "pharmacies"},
+                                        {"label": "Conseillers", "value": "conseillers"},
                                         {"label": "Agences BIAT", "value": "biat"},
                                         {"label": "Banques Concurrentes", "value": "competitors"}
                                     ],
-                                    value=["pharmacies", "biat"],
+                                    value=["conseillers", "biat"],
                                     style={"margin-bottom": "1rem"}
                                 )
                             ]),
                             
                             html.Div([
-                                html.Label("Type de Service:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
+                                html.Label("Précision des Coordonnées:", style={"font-weight": "bold", "margin-bottom": "0.5rem"}),
                                 html.Div([
-                                    dbc.Button("Tout Sélectionner", id="select_all_services", color="primary", size="sm", 
+                                    dbc.Button("Haute Précision", id="high_precision_conseillers", color="success", size="sm", 
                                               style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
-                                    dbc.Button("Tout Désélectionner", id="deselect_all_services", color="secondary", size="sm",
+                                    dbc.Button("Précision Moyenne", id="medium_precision_conseillers", color="warning", size="sm",
+                                              style={"margin-right": "0.5rem", "margin-bottom": "0.5rem"}),
+                                    dbc.Button("Toutes Précisions", id="all_precision_conseillers", color="info", size="sm",
                                               style={"margin-bottom": "0.5rem"})
                                 ]),
                                 dcc.Checklist(
-                                    id="service_selection",
-                                    options=[],  # Will be populated dynamically
-                                    value=[],    # Will be populated dynamically
-                                    style={"max-height": "300px", "overflow-y": "scroll", "border": "1px solid #ddd", 
+                                    id="precision_selection_conseillers",
+                                    options=[
+                                        {"label": "Haute Précision (±30m)", "value": "high"},
+                                        {"label": "Précision Moyenne (±1km)", "value": "medium"},
+                                        {"label": "Précision Faible", "value": "low"}
+                                    ],
+                                    value=["high", "medium", "low"],
+                                    style={"max-height": "200px", "overflow-y": "scroll", "border": "1px solid #ddd", 
                                           "padding": "0.5rem", "border-radius": "4px", "font-size": "0.85rem"}
                                 )
                             ], style={"margin-bottom": "1rem"})
@@ -98,7 +104,7 @@ pharmacies_page = html.Div(
                             dbc.Col(
                                 html.Div(
                                     children=[
-                                        dcc.Dropdown(id="slct_city_pharmacies",
+                                        dcc.Dropdown(id="slct_city_conseillers",
                                                     options=[{"label": i, "value": i} for i in gdf_all_banks['gouvernorat'].unique()],
                                                     multi=True,
                                                     placeholder="Sélectionnez un ou plusieurs Gouvernorat")
@@ -108,7 +114,7 @@ pharmacies_page = html.Div(
                             dbc.Col(
                                 html.Div(
                                     children=[
-                                        dcc.Dropdown(id="slct_delegat_pharmacies", 
+                                        dcc.Dropdown(id="slct_delegat_conseillers", 
                                                     multi=True,
                                                     placeholder="Sélectionnez une ou plusieurs Délégation",                                                    
                                                 )
@@ -121,9 +127,8 @@ pharmacies_page = html.Div(
                             "margin-right": "3rem"})
                     ,
 
-
         
-                        dcc.Graph(id="pharmacies_bee_map",style={"height": "93rem",
+                        dcc.Graph(id="conseillers_bee_map",style={"height": "93rem",
                                                         "margin-bottom": "1rem",
                                                         "margin-left": "1rem","margin-right": "1rem","margin-top":"1rem"}),
                         
